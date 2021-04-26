@@ -1,0 +1,63 @@
+[gd_scene load_steps=9 format=2]
+
+[ext_resource path="res://Brain/Brain.gd" type="Script" id=1]
+[ext_resource path="res://Clock/Clock.png" type="Texture" id=2]
+[ext_resource path="res://Clock/ClockWhite.png" type="Texture" id=3]
+
+[sub_resource type="Shader" id=1]
+code = "shader_type canvas_item;
+
+uniform sampler2D NOISE_PATTERN;
+uniform float filling = .7;
+
+void fragment() {
+    COLOR = texture(TEXTURE, UV);
+	float seed = sin(TIME + UV.x*10.)*0.04 + (texture(NOISE_PATTERN, vec2(UV.x, 1)).r-.5)*0.2;
+	if(filling > 0. && filling < 1.) {
+		if(UV.y < (1.-filling) + seed) {
+			COLOR.a *= 0.;
+		}
+	} else if(filling == 0.) {
+		COLOR.a *= 0.;
+	}
+}
+"
+
+[sub_resource type="OpenSimplexNoise" id=2]
+seed = 84656
+octaves = 5
+period = 100.0
+persistence = 0.2
+
+[sub_resource type="NoiseTexture" id=3]
+width = 600
+height = 600
+seamless = true
+noise = SubResource( 2 )
+
+[sub_resource type="ShaderMaterial" id=4]
+shader = SubResource( 1 )
+shader_param/filling = 0.7
+shader_param/NOISE_PATTERN = SubResource( 3 )
+
+[sub_resource type="CircleShape2D" id=5]
+radius = 302.523
+
+[node name="Clock" type="Sprite"]
+scale = Vector2( 0.2, 0.2 )
+texture = ExtResource( 2 )
+script = ExtResource( 1 )
+
+[node name="Full" type="Sprite" parent="."]
+material = SubResource( 4 )
+texture = ExtResource( 3 )
+__meta__ = {
+"_edit_lock_": true
+}
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource( 5 )
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_Area2D_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_Area2D_mouse_exited"]

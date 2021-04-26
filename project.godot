@@ -1,0 +1,45 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "Node2D",
+"class": "Cell",
+"language": "GDScript",
+"path": "res://Cell/Cell.gd"
+} ]
+_global_script_class_icons={
+"Cell": ""
+}
+
+[application]
+
+config/name="LudumDeep48"
+run/main_scene="res://Play.tscn"
+boot_splash/image="res://BG.png"
+config/icon="res://icon.png"
+
+[audio]
+
+output_latency.web=100
+
+[autoload]
+
+ResMgr="*res://ResMgr.gd"
+Levels="*res://Levels.gd"
+VM="*res://VM.gd"
+
+[display]
+
+window/stretch/mode="2d"
+window/stretch/aspect="keep"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"
