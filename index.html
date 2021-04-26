@@ -2,8 +2,143 @@
 <html>
     <head>
         <title>LD48 - Deep Seeker - DaF</title>
+        <style>
+body {
+    text-align: center;
+    font-family: "Verdana", sans-serif;
+}
+.blob-container {
+    width: 10em;
+    margin: 0 auto;
+}
+.blob-container img {
+    height: 3em;
+}
+.instr-container {
+    list-style: none;
+    width: 20em;
+    margin: 0 auto;
+}
+.instr-container img {
+    height: 3em;
+    margin: auto;
+}
+.instr-container li {
+    display: flex;
+    flex-flow: row;
+}
+        </style>
     </head>
     <body>
-        
+        <h1>Deep Seeker</h1>
+        <p>
+            This page is to access the Deep Seeker entry for LD48, if you want to access the future versions go to <a href="postld48">postld48</a> (not currently available).
+        </p>
+        <p>
+            Currently due to a known <a href="https://github.com/godotengine/godot/issues/40891">bug/problem</a> of the Godot engine esported for web I would recomend to use this page as manual,
+            but play with the <a href="https://github.com/DarioDaF/DeepSeekerLD4848/releases/tag/v0.1-alpha">native version</a> for your system if available.
+            Otherwise mute the audio to avoid headaches :).
+        </p>
+        <button onclick="document.getElementById('game').src='release'; this.style.display = 'none';">
+            Load the game
+        </button>
+        <br /><br />
+        <iframe id="game" max-width="1024" height="600" width="90%"></iframe>
+        <h1>Lab equipment - User Manual</h1>
+        <h2>Cells</h2>
+        <p>
+            Each cell has a given number of <b>blobs</b> (yes it's the technical term);
+            when clicked a cell will be previewed in the microscope and the <i>slots</i>
+            relative to each blob will be shown with a number inside.
+        </p>
+        <p>
+            The cell contains a <b>start marker</b> as black arrow label on the membrane pointing to the starting blob;
+            the bots will connect to this marker to process the cells.
+        </p>
+        <p>
+            Each blob has a numerical value associated with it (no blob is zero),
+            they are sorted by wavelength of the blob partand the list is:
+            <b>
+                <ol class="blob-container">
+                    <li><img src="imgs/Blobs/1.png" /></li>
+                    <li><img src="imgs/Blobs/2.png" /></li>
+                    <li><img src="imgs/Blobs/3.png" /></li>
+                    <li><img src="imgs/Blobs/4.png" /></li>
+                    <li><img src="imgs/Blobs/5.png" /></li>
+                    <li><img src="imgs/Blobs/6.png" /></li>
+                </ol>
+            </b>
+        </p>
+        <h2>Programming</h2>
+        <p>
+            The nanobot will attach to the cell in the marker and start its program.
+            To avoid spoiling the beginning of the gameplay the reference and journey to the language is included at the <a href="#spoiler">end of the page</a>
+        </p>
+        <p>
+            The cell contains a <b>start marker</b> as black arrow label on the membrane pointing to the starting blob;
+            the bots will connect to this marker to process the cells.
+        </p>
+        <p>
+            Near each cell's blob the bot can store a value (represented in the corresponding slot) and the value of the slot
+            under the blob where the nanobot is (marked in red) will be called <b>current value</b>.
+        </p>
+        <p>
+            The nanobots must be small and last long time to be effective, that's why there are
+            <b>resource limitation</b> that can be queried overing their icons on the bottom right of the lab.
+        </p>
+        <p>
+            To insert the instruction there are keyboard bindings described below,
+            to move the writing cursor use the arrows and
+            backspace and delete are used as you were writing text.
+        </p>
+        <p>
+            The instructions act on the bot position and current slot according to the current table:
+            <ol class="instr-container">
+                <li>
+                    <img src="imgs/Instructions/Next.png" />
+                    <p><i>("&gt;" binding)</i> Moves the bot to the next slot according to start makrer direction</p>
+                </li>
+                <li>
+                    <img src="imgs/Instructions/Prev.png" />
+                    <p><i>("&lt;" binding)</i> Moves the bot to the previous slot according to start makrer direction</p>
+                </li>
+                <li>
+                    <img src="imgs/Instructions/Inc.png" />
+                    <p><i>("+" binding)</i> Increments the current value</p>
+                </li>
+                <li>
+                    <img src="imgs/Instructions/Dec.png" />
+                    <p><i>("-" binding)</i> Decrements the current value</p>
+                </li>
+                <li>
+                    <img src="imgs/Instructions/Look.png" />
+                    <p><i>("," -comma- binding)</i> <b>Adds</b> the blob type number to the current value</p>
+                </li>
+                <li>
+                    <img src="imgs/Instructions/Kill.png" />
+                    <p><i>("." -period- binding)</i> <b>Destroys</b> the cell <i>if and only if</i> the current value is not zero</p>
+                </li>
+                <li>
+                    <img src="imgs/Instructions/OpenLoop.png" />
+                    <p><i>("[" binding)</i> Moves the bot to the next slot according to start makrer direction</p>
+                </li>
+                <li>
+                    <img src="imgs/Instructions/ClosedLoop.png" />
+                    <p><i>("]" binding)</i> Moves the bot to the next slot according to start makrer direction</p>
+                </li>
+            </ol>
+        </p>
+        <h1 style="margin: 2em auto 20em auto">STOP HERE IF YOU HAVE YET TO PLAY THE GAME</h1>
+        <p id="spoiler">
+            The programming language is inspired by the exoteric programming language <a href="https://en.wikipedia.org/wiki/Brainfuck">BrainFuck</a>.
+            Some changes (but not all the ones I thought about for semplicity sake) were taken to make it more interesting
+            and less mind-dumbing verbose the solutions to the levels.
+        </p>
+        <p>
+            The initial idea had also multiple starting points per cell (and different directions)
+            and multiple deadly cells to kill with the same bot.
+            I hope to implement those with the step-by-step debugger (missing only UI implementation for now) and
+            custom cell/level editor in the future, after I recover from the <b>LD48 jet-lag</b>.
+        </p>
     </body>
 </html>
