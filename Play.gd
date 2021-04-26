@@ -104,6 +104,8 @@ func load_level():
 
 func _process(delta):
 	#$AudioBlins.position = get_global_mouse_position()
+	# @TODO: Fix or bypass only in html export and handle trough JS
+	# and browser handlers (<audio>)
 	pass
 
 func _ready():
