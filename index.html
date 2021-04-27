@@ -27,6 +27,11 @@ body {
     display: flex;
     flex-flow: row;
 }
+code {
+    background-color: black;
+    color: white;
+    padding: 0.5em;
+}
         </style>
     </head>
     <body>
@@ -47,7 +52,7 @@ body {
         </button>
         <br /><br />
         <iframe id="game" max-width="1024" height="600" width="90%"></iframe>
-        <h1>Lab equipment - User Manual</h1>
+        <h1>Lab equipment - User Manual [Review 1]</h1>
         <h2>Cells</h2>
         <p>
             Each cell has a given number of <b>blobs</b> (yes it's the technical term);
@@ -123,13 +128,24 @@ body {
                 </li>
                 <li>
                     <img src="imgs/Instructions/OpenLoop.png" />
-                    <p><i>("[" binding)</i> Moves the bot to the next slot according to start makrer direction</p>
+                    <p><i>("[" binding)</i> If the current value is <b>zero</b> all the program between this and the corresponding "]" will be skipped</p>
                 </li>
                 <li>
                     <img src="imgs/Instructions/ClosedLoop.png" />
-                    <p><i>("]" binding)</i> Moves the bot to the next slot according to start makrer direction</p>
+                    <p><i>("]" binding)</i> If the current value is <b>non-zero</b> execution loops back to the corresponding "["</p>
                 </li>
             </ol>
+        </p>
+        <p>
+            As a simple reminder for the square brackets instructions you can think:
+            <br /><br />
+            <code>[ ***code to run*** ]</code>
+            is the same as
+            <code>
+                while(currentValue != 0) { // "["
+                    ***code to run***
+                } // "]"
+            </code>
         </p>
         <h1 style="margin: 2em auto 20em auto">STOP HERE IF YOU HAVE YET TO PLAY THE GAME</h1>
         <p id="spoiler">
@@ -142,6 +158,11 @@ body {
             and multiple deadly cells to kill with the same bot.
             I hope to implement those with the step-by-step debugger (missing only UI implementation for now) and
             custom cell/level editor in the future, after I recover from the <b>LD48 jet-lag</b>.
+        </p>
+        <h2>Resources</h2>
+        <p>
+            There is the program resource (brain) that indicates how many instruction your program is made of,
+            than there is time that is the number of instructions executed (cell dependent, counting loops).
         </p>
     </body>
 </html>
