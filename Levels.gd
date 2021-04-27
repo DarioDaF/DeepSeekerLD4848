@@ -1,6 +1,25 @@
 extends Node
 
 const data = [
+	#{
+	#	name = 'Tutorial',
+	#	pitch = 0.2,
+	#	max_time = 100.0,
+	#	max_brain = 30.0,
+	#	cells = [
+	#		# First cell is deadly by default
+	#		{
+	#			blobs = [0, 0, 0, 0],
+	#			hooks = [0]
+	#		}
+	#	],
+	#	text = [
+	#		'This is a [color=#44F][b]custom level™[/b][/color] to make a short video to explain the UI',
+	#		'I think the interface and tutorial can use some [color=#888](a lot of)[/color] work, but the puzzles were more intriguing than I expected.',
+	#		'Thanks you all for commenting your opinions [color=#F00][b]<3[/b][/color]❣'
+	#	],
+	#	end_text = 'Have a [b]nice day[/b]!'
+	#},
 	{
 		name = 'Intro',
 		pitch = 1.0,

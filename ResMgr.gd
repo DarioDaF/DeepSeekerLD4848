@@ -26,7 +26,12 @@ func scancode_to_char(scancode):
 	return OS.get_scancode_string(scancode)
 
 func unicode_to_char(unicode):
-	return char(unicode)
+	var res = char(unicode)
+	if res == '4':
+		return '<'
+	elif res == '6':
+		return '>'
+	return res
 
 const instruction_map = {
 	'>': 'Next',

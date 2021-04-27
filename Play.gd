@@ -121,7 +121,7 @@ func update_cells_status():
 	VM.program = $Editor.program
 	VM.max_steps = max_time
 	sel_time = 0
-	all_ok = true
+	all_ok = len(VM.program) <= max_brain
 	for cell in $CellList.get_children():
 		if not VM.test_cell(cell):
 			all_ok = false
@@ -139,9 +139,10 @@ func update_big_cell():
 func _input(event):
 	var eKbd = event as InputEventKey
 	if eKbd:
-		if eKbd.pressed and eKbd.scancode == KEY_SPACE:
+		var c = ResMgr.unicode_to_char(eKbd.unicode)
+		if eKbd.pressed and c == ' ':
 			advance_text()
-		if eKbd.pressed and eKbd.scancode == KEY_0:
+		if eKbd.pressed and c == '0':
 			level = 0
 			load_level()
 		if DEBUG:
