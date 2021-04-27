@@ -103,10 +103,11 @@ func load_level():
 	$Editor.reset() # Causes all_ok to be recomputed
 
 func _process(delta):
-	#$AudioBlins.position = get_global_mouse_position()
+	$AudioBlins.position = get_global_mouse_position()
 	# @TODO: Fix or bypass only in html export and handle trough JS
 	# and browser handlers (<audio>)
-	pass
+	# NOT A PROBLEM WITH GODOT 3.3 (scuffed fast reexport, imagine
+	# if it was Unity to download the update in the last 30 mins)
 
 func _ready():
 	randomize()

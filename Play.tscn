@@ -191,6 +191,7 @@ __meta__ = {
 [node name="Program" type="Node2D" parent="."]
 position = Vector2( 774.806, 315.403 )
 script = ExtResource( 10 )
+
 [connection signal="program_changed" from="Editor" to="." method="_on_Editor_program_changed"]
 [connection signal="gui_input" from="Text/ColorRect" to="." method="_on_ColorRect_gui_input"]
 [connection signal="focused" from="Stats/Brain" to="." method="_on_Brain_focused"]
